@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Evan Chekal">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dungeon Loot Splitter Application">
+    <title>Dungeon Loot Splitter</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Dungeon Loot Splitter</h1>
+</header>
+
+<main>
+
+    <!--Party Setup-->
+    <section class="panel">
+        <h2>Party Setup</h2>
+
+        <label for="partySize">Number of Party Members:</label>
+        <input type="number" id="partySize" min="1" step="1">
+
+        <button id="resetBtn">Reset All</button>
+
+        <p id="partyError" class="error"></p>
+    </section>
+
+    <!--Add Loot-->
+    <section class="panel">
+        <h2>Add Loot</h2>
+
+        <label for="lootName">Loot Name:</label>
+        <input type="text" id="lootName">
+
+        <label for="lootValue">Loot Value:</label>
+        <input type="number" id="lootValue" min="0" step="0.01">
+
+        <label for="lootQuantity">Quantity:</label>
+        <input type="number" id="lootQuantity" min="1" step="1">
+
+        <button id="addLootBtn">Add Loot</button>
+
+        <p id="lootError" class="error"></p>
+    </section>
+
+    <!--Loot List-->
+    <section class="panel">
+        <h2>Loot List</h2>
+
+        <div id="noLootMessage">No loot added.</div>
+
+        <div class="loot-table">
+            <div class="loot-header">Name</div>
+            <div class="loot-header">Value</div>
+            <div class="loot-header">Quantity</div>
+            <div class="loot-header">Remove</div>
+        </div>
+            <div id="lootRows"></div>
+
+        <div id="totalSection" class="total-row hidden">
+            Total Loot: $<span id="runningTotal">0.00</span>
+        </div>
+    </section>
+
+    <!--Split Loot-->
+    <section class="panel">
+        <h2>Split Loot</h2>
+
+        <button id="splitLootBtn" disabled>Split Loot</button>
+
+        <div id="results" class="hidden">
+            <p><strong>Total Loot:</strong> $<span id="finalTotal">0.00</span></p>
+            <p><strong>Loot Per Party Member:</strong> $<span id="perMember">0.00</span></p>
+        </div>
+
+        <p id="splitError" class="error"></p>
+    </section>
+ 
+    <section class="panel">
+        <h2>Server Sync</h2>
+
+        <button id="syncBtn">Sync to Server</button>
+        <button id="loadBtn">Load from Server</button>
+
+        <p id="serverMessage"></p>
+    </section>
+
+    <!--Reflection Paragraph-->
+    <section class="panel reflection">
+        <h2>Logic Explanation</h2>
+        <p>
+            The lootArray is the source of truth because it stores all of the loot data, including the quantity, name, and value. When there are changes to loot or the party size, the updateUI() recalculates the totals and updates the screen. The application states saves to the localStorage so the data is not lost when there are changes to the page. JSON.stringify() converts state object into a string, allowing it to be stored, and JSON.parse() turns it back to an object when it restores data. After the page is refreshed, restoreState() loads the data and updateUI() shows it on screen.
+        </p>
+    </section>
+
+
+
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
