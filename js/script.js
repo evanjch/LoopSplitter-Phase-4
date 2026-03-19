@@ -167,7 +167,7 @@ function syncToServer() {
         }
     };
 
-    fetch(`https://goldtop.hopto.org/save/${STUDENT_ID}`, {
+    fetch(`http://goldtop.hopto.org/save/${STUDENT_ID}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -195,7 +195,7 @@ function loadFromServer() {
 
     const message = document.getElementById("serverMessage");
 
-    fetch(`https://goldtop.hopto.org/load/${STUDENT_ID}`)
+    fetch(`http://goldtop.hopto.org/load/${STUDENT_ID}`)
     .then(response => {
         if (!response.ok) throw new Error("Server error");
         return response.json();
