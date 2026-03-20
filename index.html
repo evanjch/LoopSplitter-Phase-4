@@ -92,7 +92,7 @@
     <section class="panel reflection">
         <h2>Logic Explanation</h2>
         <p>
-            The lootArray is the source of truth because it stores all of the loot data, including the quantity, name, and value. When there are changes to loot or the party size, the updateUI() recalculates the totals and updates the screen. The application states saves to the localStorage so the data is not lost when there are changes to the page. JSON.stringify() converts state object into a string, allowing it to be stored, and JSON.parse() turns it back to an object when it restores data. After the page is refreshed, restoreState() loads the data and updateUI() shows it on screen.
+            The lootArray is the source of truth because it stores all of the loot data, including the quantity, name, and value. When there are changes to loot or the party size, the updateUI() recalculates the totals and updates the screen. The application states saves to the localStorage so the data is not lost when there are changes to the page. JSON.stringify() converts state object into a string, allowing it to be stored, and JSON.parse() turns it back to an object when it restores data. After the page is refreshed, restoreState() loads the data. For synchronizing, syncToServer() sends the current state to a server, but doesn't activate updateUI(). The loadFromServer() gets the saved data and validates it. saveState() is then called along with updateUI() to show the new rendered state.         
         </p>
     </section>
 
